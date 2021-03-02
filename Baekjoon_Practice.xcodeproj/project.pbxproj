@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51C0A84C25EE59A500669BE6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51C0A84B25EE59A500669BE6 /* main.cpp */; };
+		519C8D9125EE5BF00069A7AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 519C8D9025EE5BF00069A7AC /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +23,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		519C8D8C25EE5BD80069A7AC /* PracticeCode.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PracticeCode.vcxproj; sourceTree = "<group>"; };
+		519C8D8D25EE5BD80069A7AC /* PracticeCode.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PracticeCode.sln; sourceTree = "<group>"; };
+		519C8D8E25EE5BD80069A7AC /* PracticeCode.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PracticeCode.vcxproj.filters; sourceTree = "<group>"; };
+		519C8D9025EE5BF00069A7AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		51C0A84825EE59A500669BE6 /* testest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testest; sourceTree = BUILT_PRODUCTS_DIR; };
-		51C0A84B25EE59A500669BE6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +44,10 @@
 		51C0A83F25EE59A500669BE6 = {
 			isa = PBXGroup;
 			children = (
-				51C0A84A25EE59A500669BE6 /* testest */,
+				519C8D9025EE5BF00069A7AC /* main.cpp */,
+				519C8D8D25EE5BD80069A7AC /* PracticeCode.sln */,
+				519C8D8C25EE5BD80069A7AC /* PracticeCode.vcxproj */,
+				519C8D8E25EE5BD80069A7AC /* PracticeCode.vcxproj.filters */,
 				51C0A84925EE59A500669BE6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,14 +58,6 @@
 				51C0A84825EE59A500669BE6 /* testest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		51C0A84A25EE59A500669BE6 /* testest */ = {
-			isa = PBXGroup;
-			children = (
-				51C0A84B25EE59A500669BE6 /* main.cpp */,
-			);
-			path = testest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,7 +94,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 51C0A84325EE59A500669BE6 /* Build configuration list for PBXProject "testest" */;
+			buildConfigurationList = 51C0A84325EE59A500669BE6 /* Build configuration list for PBXProject "Baekjoon_Practice" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -119,7 +117,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51C0A84C25EE59A500669BE6 /* main.cpp in Sources */,
+				519C8D9125EE5BF00069A7AC /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +252,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		51C0A84325EE59A500669BE6 /* Build configuration list for PBXProject "testest" */ = {
+		51C0A84325EE59A500669BE6 /* Build configuration list for PBXProject "Baekjoon_Practice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				51C0A84D25EE59A500669BE6 /* Debug */,

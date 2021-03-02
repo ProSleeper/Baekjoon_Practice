@@ -8,20 +8,20 @@ class Building
 {
 
 public:
-	Building();
-	~Building();
+    Building();
+    ~Building();
 
-	void InitBuilding(int buildingNumber, int maxBuildingCount, int buildTime, string** isAvailable);
-	void BuildStart();
-	void BuildComplete();
-	void RequirementsOpen();
+    void InitBuilding(int buildingNumber, int maxBuildingCount, int buildTime, string** isAvailable);
+    void BuildStart();
+    void BuildComplete();
+    void RequirementsOpen();
 
 private:
-	int mBuildingNumber = 0;
-	int mBuildTime		= 0;
-	int mAvailableCount = 0;
-	int mMaxBuildingCount = 0;
-	string** mIsAvailable = nullptr;
+    int mBuildingNumber = 0;
+    int mBuildTime        = 0;
+    int mAvailableCount = 0;
+    int mMaxBuildingCount = 0;
+    string** mIsAvailable = nullptr;
 };
 
 Building::Building()
@@ -29,21 +29,21 @@ Building::Building()
 }
 void Building::BuildStart()
 {
-	bool impossible = true;
+    bool impossible = true;
 
-	for(int i = 0; i < mAvailableCount; i++){
-		if(mIsAvailable[i][2] == "false"){
-			cout << "°Ç¹° " + mIsAvailable[i][0] + " ¸ÕÀú Áö¾î¾ß ÇÕ´Ï´Ù. (°Ç¹° " + to_string(mBuildingNumber) + "ÀÇ Á¶°Ç)\n";
-			impossible = false;
-		}
-	}
+    for(int i = 0; i < mAvailableCount; i++){
+        if(mIsAvailable[i][2] == "false"){
+            cout << "ê±´ë¬¼ " + mIsAvailable[i][0] + " ë¨¼ì € ì§€ì–´ì•¼ í•©ë‹ˆë‹¤. (ê±´ë¬¼ " + to_string(mBuildingNumber) + "ì˜ ì¡°ê±´)\n";
+            impossible = false;
+        }
+    }
 
-	if(impossible == false){
-		return;
-	}
+    if(impossible == false){
+        return;
+    }
 
 
-	cout << "°Ç¹° " + to_string(mBuildingNumber) + " °Ç¼³À» ½ÃÀÛÇÕ´Ï´Ù.\n";
+    cout << "ê±´ë¬¼ " + to_string(mBuildingNumber) + " ê±´ì„¤ì„ ì‹œì‘í•©ë‹ˆë‹¤.\n";
 }
 void Building::BuildComplete()
 {
@@ -56,26 +56,26 @@ void Building::RequirementsOpen()
 
 void Building::InitBuilding(int buildingNumber, int maxBuildingCount, int buildTime, string** isAvailable)
 {
-	mBuildingNumber		= buildingNumber;
-	mBuildTime			= buildTime;
-	mMaxBuildingCount	= maxBuildingCount;
-	for(int i = 0; i < mMaxBuildingCount; i++){
-		if(mBuildingNumber == stoi(isAvailable[i][1])){
-			mAvailableCount++;
-		}
-	}
-	mIsAvailable = new string * [mAvailableCount];
+    mBuildingNumber        = buildingNumber;
+    mBuildTime            = buildTime;
+    mMaxBuildingCount    = maxBuildingCount;
+    for(int i = 0; i < mMaxBuildingCount; i++){
+        if(mBuildingNumber == stoi(isAvailable[i][1])){
+            mAvailableCount++;
+        }
+    }
+    mIsAvailable = new string * [mAvailableCount];
 
-	int tempAvailableCount = 0;
-	for(int i = 0; i < mMaxBuildingCount; i++){
-		if(mBuildingNumber == stoi(isAvailable[i][1])){
-			mIsAvailable[tempAvailableCount] = new string[3];
-			mIsAvailable[tempAvailableCount][0] = isAvailable[i][0];
-			mIsAvailable[tempAvailableCount][1] = isAvailable[i][1];
-			mIsAvailable[tempAvailableCount][2] = "false";
-			tempAvailableCount++;
-		}
-	}
+    int tempAvailableCount = 0;
+    for(int i = 0; i < mMaxBuildingCount; i++){
+        if(mBuildingNumber == stoi(isAvailable[i][1])){
+            mIsAvailable[tempAvailableCount] = new string[3];
+            mIsAvailable[tempAvailableCount][0] = isAvailable[i][0];
+            mIsAvailable[tempAvailableCount][1] = isAvailable[i][1];
+            mIsAvailable[tempAvailableCount][2] = "false";
+            tempAvailableCount++;
+        }
+    }
 }
 
 Building::~Building()
@@ -83,76 +83,77 @@ Building::~Building()
 }
 
 /*
-tree		<- notR	 
-age			<- age + altar
-iter		<- tree + altar
-altar		<- notR
-huntershall	<- tree
-lore		<- huntershall + age
-protecter	<- huntershall
-wind		<- age
+tree        <- notR
+age            <- age + altar
+iter        <- tree + altar
+altar        <- notR
+huntershall    <- tree
+lore        <- huntershall + age
+protecter    <- huntershall
+wind        <- age
 
 
-war			<- notR
-wonder		<- notR
-chimera		<- iter
-moonWell	<- notR
+war            <- notR
+wonder        <- notR
+chimera        <- iter
+moonWell    <- notR
 */
 
-//8 8 °Ç¹° °¹¼ö, °Ç¹°°£ÀÇ °Ç¼³¼ø¼­ ±ÔÄ¢ °¹¼ö
-//10 20 1 5 8 7 1 43 °Ç¼³ ½Ã°£
-//1 2	°Ç¼³¼ø¼­ ±ÔÄ¢1
-//1 3	°Ç¼³¼ø¼­ ±ÔÄ¢2
-//2 4	°Ç¼³¼ø¼­ ±ÔÄ¢3
-//2 5	°Ç¼³¼ø¼­ ±ÔÄ¢4
-//3 6	°Ç¼³¼ø¼­ ±ÔÄ¢5
-//5 7	°Ç¼³¼ø¼­ ±ÔÄ¢6
-//6 7	°Ç¼³¼ø¼­ ±ÔÄ¢7
-//7 8	°Ç¼³¼ø¼­ ±ÔÄ¢8
-//7		¸ñÇ¥ °Ç¹°
+//8 8 ê±´ë¬¼ ê°¯ìˆ˜, ê±´ë¬¼ê°„ì˜ ê±´ì„¤ìˆœì„œ ê·œì¹™ ê°¯ìˆ˜
+//10 20 1 5 8 7 1 43 ê±´ì„¤ ì‹œê°„
+//1 2    ê±´ì„¤ìˆœì„œ ê·œì¹™1
+//1 3    ê±´ì„¤ìˆœì„œ ê·œì¹™2
+//2 4    ê±´ì„¤ìˆœì„œ ê·œì¹™3
+//2 5    ê±´ì„¤ìˆœì„œ ê·œì¹™4
+//3 6    ê±´ì„¤ìˆœì„œ ê·œì¹™5
+//5 7    ê±´ì„¤ìˆœì„œ ê·œì¹™6
+//6 7    ê±´ì„¤ìˆœì„œ ê·œì¹™7
+//7 8    ê±´ì„¤ìˆœì„œ ê·œì¹™8
+//7        ëª©í‘œ ê±´ë¬¼
 
 int main()
 {
-	//int	testCase			= 0;
+    //int    testCase            = 0;
 
-	int	buildingCount		= 0;
-	int	buildingRuleCount	= 0;
-	int	targetBuiling		= 0;
-	int**	buildRule		= nullptr;
-	int*	buildTime		= nullptr;
+    int    buildingCount        = 0;
+    int    buildingRuleCount    = 0;
+    int    targetBuiling        = 0;
+    int**    buildRule        = nullptr;
+    int*    buildTime        = nullptr;
 
+    cout << "í…ŒìŠ¤íŠ¸";
+    
+    cin >> buildingCount;
+    cin >> buildingRuleCount;
+    buildTime = new int[buildingCount];
+    buildRule = new int*[buildingRuleCount];
 
-	cin >> buildingCount;
-	cin >> buildingRuleCount;
-	buildTime = new int[buildingCount];
-	buildRule = new int*[buildingRuleCount];
+    
 
-	
+    for(int i = 0; i < buildingCount; i++){
+        cin >> buildTime[i];
+    }
 
-	for(int i = 0; i < buildingCount; i++){
-		cin >> buildTime[i];
-	}
+    string** rules = new string * [buildingRuleCount];
+    for(int i = 0; i < buildingRuleCount; i++){
+        *(buildRule + i) = new int[2];
+        cin >> buildRule[i][0] >> buildRule[i][1];
+        rules[i] = new string[2];
+        rules[i][0] = to_string(buildRule[i][0]);
+        rules[i][1] = to_string(buildRule[i][1]);
+    }
+    
+    cin >> targetBuiling;
 
-	string** rules = new string * [buildingRuleCount];
-	for(int i = 0; i < buildingRuleCount; i++){
-		*(buildRule + i) = new int[2];
-		cin >> buildRule[i][0] >> buildRule[i][1];
-		rules[i] = new string[2];
-		rules[i][0] = to_string(buildRule[i][0]);
-		rules[i][1] = to_string(buildRule[i][1]);
-	}
-	
-	cin >> targetBuiling;
+    Building* building = new Building[buildingCount];
+    for(int i = 0; i < buildingCount; i++){
+        building[i].InitBuilding(i + 1, buildingCount, buildTime[i], rules);
+        building[i].BuildStart();
+    }
 
-	Building* building = new Building[buildingCount];
-	for(int i = 0; i < buildingCount; i++){
-		building[i].InitBuilding(i + 1, buildingCount, buildTime[i], rules);
-		building[i].BuildStart();
-	}
+    
 
-	
-
-	return 0;
+    return 0;
 }
 
 //=============================================================================================================================
@@ -165,45 +166,45 @@ int main()
 //
 //typedef void (*MYFUNC) (int value, void* ctx);
 //
-////Admin Class ´Â ÀÏ¹İÀûÀ¸·Î ´Ù¸¥ ¼Ò½ºÆÄÀÏ/Çì´õÆÄÀÏ¿¡ Á¤ÀÇ°¡ µÇ¾î ÀÖÀ» °ÍÀÌ´Ù.
+////Admin Class ëŠ” ì¼ë°˜ì ìœ¼ë¡œ ë‹¤ë¥¸ ì†ŒìŠ¤íŒŒì¼/í—¤ë”íŒŒì¼ì— ì •ì˜ê°€ ë˜ì–´ ìˆì„ ê²ƒì´ë‹¤.
 //class Admin{
 //public:
-//    MYFUNC m_userfunc;  // User Ãø¿¡¼­ Äİ¹éÇÔ¼ö µî·ÏÀ» À§ÇÑ ¿øÇü ÁöÁ¤
-//    void* m_userctx;   // User Ãø¿¡¼­ Äİ¹éÇÔ¼ö¸¦ »ç¿ëÇÒ ¶§, staticÀ¸·Î ¼±¾ğµÈ
-//                        // Äİ¹éÇÔ¼ö ³»ºÎ¿¡¼­ ¸â¹öº¯¼ö, ¸â¹öÇÔ¼ö¸¦ È£ÃâÇÏ±â À§ÇØ
-//                        // User ClassÀÇ Context¸¦ µî·ÏÇÏ±â À§ÇÑ º¯¼ö
+//    MYFUNC m_userfunc;  // User ì¸¡ì—ì„œ ì½œë°±í•¨ìˆ˜ ë“±ë¡ì„ ìœ„í•œ ì›í˜• ì§€ì •
+//    void* m_userctx;   // User ì¸¡ì—ì„œ ì½œë°±í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•  ë•Œ, staticìœ¼ë¡œ ì„ ì–¸ëœ
+//                        // ì½œë°±í•¨ìˆ˜ ë‚´ë¶€ì—ì„œ ë©¤ë²„ë³€ìˆ˜, ë©¤ë²„í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê¸° ìœ„í•´
+//                        // User Classì˜ Contextë¥¼ ë“±ë¡í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 //
 //    void print(){
-//        m_userfunc(10, m_userctx);           // Admin Ãø¿¡¼­, µî·ÏµÈ À¯ÀúÀÇ Äİ¹éÇÔ¼ö¸¦ È£Ãâ
-//        cout << "°ü¸®ÀÚ ÇÔ¼ö ºÎºĞ" << endl;  // Admin Ãø¿¡¼­ Á¤ÀÇµÈ ÇÔ¼ö ±¸¹®
+//        m_userfunc(10, m_userctx);           // Admin ì¸¡ì—ì„œ, ë“±ë¡ëœ ìœ ì €ì˜ ì½œë°±í•¨ìˆ˜ë¥¼ í˜¸ì¶œ
+//        cout << "ê´€ë¦¬ì í•¨ìˆ˜ ë¶€ë¶„" << endl;  // Admin ì¸¡ì—ì„œ ì •ì˜ëœ í•¨ìˆ˜ êµ¬ë¬¸
 //    }
-//    void RegisterUserFunc(void* func, void* ctx){ // User°¡ Äİ¹éÇÔ¼ö¸¦ µî·ÏÇÏ±â À§ÇØ Á¦°øµÇ´Â ÇÔ¼ö
-//        m_userfunc = (MYFUNC)func;                  // UserÀÇ Äİ¹éÇÔ¼ö¸¦ Admin¿¡ µî·Ï
-//        m_userctx = ctx;                            // UserÀÇ Context¸¦ ÀúÀå. ÀÌÀ¯´Â User Äİ¹éÇÔ¼ö ³»ºÎ¿¡¼­
-//                                                    // ¸â¹öÇÔ¼ö, º¯¼ö¿¡ Á¢±ÙÇÏ±â À§ÇÔÀÌ´Ù.
+//    void RegisterUserFunc(void* func, void* ctx){ // Userê°€ ì½œë°±í•¨ìˆ˜ë¥¼ ë“±ë¡í•˜ê¸° ìœ„í•´ ì œê³µë˜ëŠ” í•¨ìˆ˜
+//        m_userfunc = (MYFUNC)func;                  // Userì˜ ì½œë°±í•¨ìˆ˜ë¥¼ Adminì— ë“±ë¡
+//        m_userctx = ctx;                            // Userì˜ Contextë¥¼ ì €ì¥. ì´ìœ ëŠ” User ì½œë°±í•¨ìˆ˜ ë‚´ë¶€ì—ì„œ
+//                                                    // ë©¤ë²„í•¨ìˆ˜, ë³€ìˆ˜ì— ì ‘ê·¼í•˜ê¸° ìœ„í•¨ì´ë‹¤.
 //    }
 //};
 //
 //class User{
 //public:
-//    Admin m_admin;      // Admin¿¡ ÀÇÇØ Á¦°ø¹ŞÀº °´Ã¼¸¦ ¼±¾ğ
+//    Admin m_admin;      // Adminì— ì˜í•´ ì œê³µë°›ì€ ê°ì²´ë¥¼ ì„ ì–¸
 //
-//    void init(){        // Admin¿¡ UserÀÇ Äİ¹éÇÔ¼ö¸¦ µî·ÏÇÏ±â À§ÇÑ ÃÊ±âÈ­ ±¸¹®
+//    void init(){        // Adminì— Userì˜ ì½œë°±í•¨ìˆ˜ë¥¼ ë“±ë¡í•˜ê¸° ìœ„í•œ ì´ˆê¸°í™” êµ¬ë¬¸
 //        m_admin.RegisterUserFunc(callbackfunc, this);
 //    }
 //
-//    void print(){       // staticÀ¸·Î ¼±¾ğµÈ Äİ¹éÇÔ¼ö¿¡¼­ ¿Ã¹Ù¸£°Ô ¸â¹öÇÔ¼ö »ç¿ëÀÌ °¡´ÉÇÑÁö È®ÀÎÇÏ±â À§ÇÑ ÇÔ¼ö
-//        cout << "¸â¹öÇÔ¼ö »ç¿ë" << endl;
+//    void print(){       // staticìœ¼ë¡œ ì„ ì–¸ëœ ì½œë°±í•¨ìˆ˜ì—ì„œ ì˜¬ë°”ë¥´ê²Œ ë©¤ë²„í•¨ìˆ˜ ì‚¬ìš©ì´ ê°€ëŠ¥í•œì§€ í™•ì¸í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
+//        cout << "ë©¤ë²„í•¨ìˆ˜ ì‚¬ìš©" << endl;
 //    }
 //
-//    static void callbackfunc(int value, void* ctx){    // Admin¿¡ µî·ÏµÉ Äİ¹éÇÔ¼ö Á¤ÀÇ
-//        User* thisObj = (User*)ctx;                    // ¸â¹öÇÔ¼ö,º¯¼ö¿¡ Á¢±ÙÇÏ±â À§ÇÑ Context ¼³Á¤
-//        cout << "À¯Àú ÇÔ¼ö :: " << value << endl;       // Admin¿¡¼­ »ç¿ëµÈ value°¡ ¿Ã¹Ù¸£°Ô Ãâ·ÂµÇ´ÂÁö È®ÀÎ
-//        thisObj->print();                               // ¸â¹öÇÔ¼ö¿¡ ¿Ã¹Ù¸£°Ô Á¢±ÙÇÒ ¼ö ÀÖ´ÂÁö È®ÀÎ
+//    static void callbackfunc(int value, void* ctx){    // Adminì— ë“±ë¡ë  ì½œë°±í•¨ìˆ˜ ì •ì˜
+//        User* thisObj = (User*)ctx;                    // ë©¤ë²„í•¨ìˆ˜,ë³€ìˆ˜ì— ì ‘ê·¼í•˜ê¸° ìœ„í•œ Context ì„¤ì •
+//        cout << "ìœ ì € í•¨ìˆ˜ :: " << value << endl;       // Adminì—ì„œ ì‚¬ìš©ëœ valueê°€ ì˜¬ë°”ë¥´ê²Œ ì¶œë ¥ë˜ëŠ”ì§€ í™•ì¸
+//        thisObj->print();                               // ë©¤ë²„í•¨ìˆ˜ì— ì˜¬ë°”ë¥´ê²Œ ì ‘ê·¼í•  ìˆ˜ ìˆëŠ”ì§€ í™•ì¸
 //    }
 //
-//    void test(){        // AdminÀÇ ÇÔ¼ö print()¸¦ »ç¿ëÇßÀ» ¶§,
-//                        // µî·ÏµÈ Äİ¹éÇÔ¼ö°¡ ¿Ã¹Ù¸£°Ô ÀÛµ¿ÇÏ´ÂÁö È®ÀÎÇÏ±â À§ÇÑ ±¸¹®
+//    void test(){        // Adminì˜ í•¨ìˆ˜ print()ë¥¼ ì‚¬ìš©í–ˆì„ ë•Œ,
+//                        // ë“±ë¡ëœ ì½œë°±í•¨ìˆ˜ê°€ ì˜¬ë°”ë¥´ê²Œ ì‘ë™í•˜ëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•œ êµ¬ë¬¸
 //        m_admin.print();
 //    }
 //};
@@ -353,7 +354,7 @@ int main()
 //
 //    callbackMap2.insert({ "bowwow", bind(&Test2::blahWithParmeter, test2) });
 //    callbackMap2.insert({ "meow", [&]() { test2.blahWithParmeter2(); } });
-//    
+//
 //
 //    callbackMap2["bowwow"]();
 //    callbackMap2["meow"]();

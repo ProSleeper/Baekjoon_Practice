@@ -1,8 +1,12 @@
 #include <iostream>
 #include <functional>
 #include <string>
+#include <map>
+#include <vector>
 
 using namespace std;
+
+typedef std::function<void(int)> TintCallback;
 
 class Building
 {
@@ -14,7 +18,8 @@ public:
     void InitBuilding(int buildingNumber, int maxBuildingCount, int buildTime, string** isAvailable);
     void BuildStart();
     void BuildComplete();
-    void RequirementsOpen();
+    void RequirementsOpen(int openNumer);
+    void CallbackRegistration(multimap<string, TintCallback>* callbackMap);
 
 private:
     int mBuildingNumber = 0;
@@ -22,6 +27,7 @@ private:
     int mAvailableCount = 0;
     int mMaxBuildingCount = 0;
     string** mIsAvailable = nullptr;
+    multimap<string, TintCallback>* mCallbackMap = nullptr;
 };
 
 Building::Building()
@@ -42,18 +48,53 @@ void Building::BuildStart()
         return;
     }
 
-
     cout << "건물 " + to_string(mBuildingNumber) + " 건설을 시작합니다.\n";
+
+    BuildComplete();
 }
 void Building::BuildComplete()
 {
-
+    cout << to_string(mBuildingNumber) + " 번 건설 완료!.\n";
+    //mCallbackMap[]();
+    for(auto itr = mCallbackMap->begin(); itr != mCallbackMap->end(); itr++){
+        if(itr->first == to_string(mBuildingNumber)){
+            //cout << itr->first << endl;
+            itr->second(mBuildingNumber);
+        }
+    }
 }
 
-void Building::RequirementsOpen()
+void Building::RequirementsOpen(int openNumber)  //openNumber로 넘겨지는 건 거의 자기 자신의 번호 일듯
 {
+    for(int i = 0; i < mAvailableCount; i++){
+        if(mIsAvailable[i][0] == to_string(openNumber)){
+            cout << "건물 " + to_string(mBuildingNumber) + "조건 " + mIsAvailable[i][0] + " 해제\n";
+            mIsAvailable[i][2] = "true";
+        }
+    }
 }
 
+void Building::CallbackRegistration(multimap<string, TintCallback>* callbackMap)
+{
+    mCallbackMap = callbackMap;
+    map<string, TintCallback> vt;
+
+    for(int i = 0; i < mAvailableCount; i++){
+        callbackMap->insert({ mIsAvailable[i][0], [&](int number){RequirementsOpen(number);} });
+    }
+}
+
+//8 8
+//10 20 1 5 8 7 1 43
+//1 2 false
+//1 3 false
+//2 4 false
+//2 5 false
+//3 6 false
+//5 7 false
+//6 7 false
+//7 8 false
+//7  
 void Building::InitBuilding(int buildingNumber, int maxBuildingCount, int buildTime, string** isAvailable)
 {
     mBuildingNumber        = buildingNumber;
@@ -111,6 +152,18 @@ moonWell    <- notR
 //7 8    건설순서 규칙8
 //7        목표 건물
 
+//8 8
+//10 20 1 5 8 7 1 43
+//1 2
+//1 3
+//2 4
+//2 5
+//3 6
+//5 7
+//6 7
+//7 8
+//7  
+
 int main()
 {
     //int    testCase            = 0;
@@ -118,19 +171,15 @@ int main()
     int    buildingCount        = 0;
     int    buildingRuleCount    = 0;
     int    targetBuiling        = 0;
-    int**    buildRule        = nullptr;
-    int*    buildTime        = nullptr;
+    int**    buildRule          = nullptr;
+    int*    buildTime           = nullptr;
     
-    cout << "윈도우 테스트 + 맥북 윈도우";
-    cout << "뭐지 이건?";
-    cout << "한글을 참 fuck";
+    cout << "input: \n";
     
     cin >> buildingCount;
     cin >> buildingRuleCount;
     buildTime = new int[buildingCount];
     buildRule = new int*[buildingRuleCount];
-
-    
 
     for(int i = 0; i < buildingCount; i++){
         cin >> buildTime[i];
@@ -148,12 +197,25 @@ int main()
     cin >> targetBuiling;
 
     Building* building = new Building[buildingCount];
+    multimap<string, TintCallback> callbackRequire;
     for(int i = 0; i < buildingCount; i++){
         building[i].InitBuilding(i + 1, buildingCount, buildTime[i], rules);
+        building[i].CallbackRegistration(&callbackRequire);
         building[i].BuildStart();
     }
+    building[0].BuildComplete();
+    building[1].BuildComplete();
+    building[2].BuildComplete();
+    building[3].BuildComplete();
+    building[4].BuildComplete();
+    building[6].BuildStart();
+    building[5].BuildComplete();
+    building[6].BuildStart();
+    building[6].BuildComplete();
+    building[7].BuildComplete();
 
-    
+    /*callbackRequire.insert({ "12", [&](int){} });
+    callbackRequire.insert({ "13", [&](int){} });*/
 
     return 0;
 }

@@ -122,8 +122,8 @@ int main()
     int*    buildTime        = nullptr;
 
     
-    cout << "맥북 테스트";
-    cout << "윈도우 테스트"
+    
+    cout << "윈도우 테스트 + 맥북 테스트";
     
     cin >> buildingCount;
     cin >> buildingRuleCount;

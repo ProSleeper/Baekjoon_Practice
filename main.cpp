@@ -120,10 +120,10 @@ int main()
     int    targetBuiling        = 0;
     int**    buildRule        = nullptr;
     int*    buildTime        = nullptr;
-
     
-    
-    cout << "윈도우 테스트 + 맥북 테스트";
+    cout << "윈도우 테스트 + 맥북 윈도우";
+    cout << "뭐지 이건?";
+    cout << "한글을 참 fuck";
     
     cin >> buildingCount;
     cin >> buildingRuleCount;

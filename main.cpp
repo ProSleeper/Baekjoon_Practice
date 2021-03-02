@@ -4,42 +4,6 @@
 
 using namespace std;
 
-//class Building
-//{
-//public:
-//	Building(int buildTime, int requireCount, int* requireBuilding);
-//	~Building();
-//
-//private:
-//	int		mBuildTime			= 0;
-//	int		mRequireCount		= 0;
-//	int*	mRequireBuilding	= nullptr;
-//};
-//
-//Building::Building(int buildTime, int requireCount, int* requireBuilding)
-//	:mBuildTime(buildTime), mRequireCount(requireCount), mRequireBuilding(requireBuilding)
-//{
-//}
-//
-//Building::~Building()
-//{
-//}
-
-
-
-/*
-1. 필요 조건
-2. 빌드 시간(시작과 끝은 메세지 출력)
-
-
-
-sdfsdf
-sdfsdf
-
-
-*/
-
-
 class Building
 {
 

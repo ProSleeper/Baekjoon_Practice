@@ -29,7 +29,11 @@ int TargetTotalBuildTime(Building* building, int targetBuilding)
             tempTime = TargetTotalBuildTime(building, require[0] - 1);
         }
     }
-    //아직 2개이상의 조건은 처리 안함
+    //정답은 나오는데 느려서 실패!
+    //현재는 구해야 하는 target 숫자에서 해제 조건이 없는 숫자를 구할 때까지 재귀로 반복해서 모든 트리를 돎(내 정의에서는 이건 탑->다운!)
+    //이걸 바텀->업 방식으로 바꿔야 할듯 그래야 모든 트리를 안거치고 4로 갈 수 있을 듯
+    //아닌가 동일한가?
+    //아니면 각 트리의 단계마다의 값을 구해서 그걸 더하는 형식?
     return tempTime + building[targetBuilding].BuildTime;
 }
 

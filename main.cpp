@@ -39,7 +39,7 @@ void Building::BuildStart()
 
     for(int i = 0; i < mAvailableCount; i++){
         if(mIsAvailable[i][2] == "false"){
-            cout << "건물 " + mIsAvailable[i][0] + " 먼저 지어야 합니다. (건물 " + to_string(mBuildingNumber) + "의 조건)\n";
+            cout << "건물 " + mIsAvailable[i][0] + " 필요.\n";
             impossible = false;
         }
     }
@@ -48,7 +48,7 @@ void Building::BuildStart()
         return;
     }
 
-    cout << "건물 " + to_string(mBuildingNumber) + " 건설을 시작합니다.\n";
+    cout << "건물 " + to_string(mBuildingNumber) + " 건설 시작~.\n";
 
     BuildComplete();
 }
@@ -100,6 +100,7 @@ void Building::InitBuilding(int buildingNumber, int maxBuildingCount, int buildT
     mBuildingNumber        = buildingNumber;
     mBuildTime            = buildTime;
     mMaxBuildingCount    = maxBuildingCount;
+
     for(int i = 0; i < mMaxBuildingCount; i++){
         if(mBuildingNumber == stoi(isAvailable[i][1])){
             mAvailableCount++;
@@ -110,11 +111,17 @@ void Building::InitBuilding(int buildingNumber, int maxBuildingCount, int buildT
     int tempAvailableCount = 0;
     for(int i = 0; i < mMaxBuildingCount; i++){
         if(mBuildingNumber == stoi(isAvailable[i][1])){
-            mIsAvailable[tempAvailableCount] = new string[3];
-            mIsAvailable[tempAvailableCount][0] = isAvailable[i][0];
-            mIsAvailable[tempAvailableCount][1] = isAvailable[i][1];
-            mIsAvailable[tempAvailableCount][2] = "false";
-            tempAvailableCount++;
+            try{
+                mIsAvailable[tempAvailableCount] = new string[3];
+                mIsAvailable[tempAvailableCount][0] = isAvailable[i][0];
+                mIsAvailable[tempAvailableCount][1] = isAvailable[i][1];
+                mIsAvailable[tempAvailableCount][2] = "false";
+                tempAvailableCount++;
+            }
+            catch(const std::exception&){
+                exception;
+            }
+            
         }
     }
 }
@@ -168,11 +175,15 @@ int main()
 {
     //int    testCase            = 0;
 
-    int    buildingCount        = 0;
-    int    buildingRuleCount    = 0;
-    int    targetBuiling        = 0;
-    int**    buildRule          = nullptr;
+    int     buildingCount           = 0;
+    int     buildingRuleCount       = 0;
+    int     targetBuiling           = 0;
+    int     userInput               = 0;
+    int**   buildRule          = nullptr;
     int*    buildTime           = nullptr;
+    string** rules = nullptr;
+    Building* building          = nullptr;
+    multimap<string, TintCallback> callbackRequire;
     
     cout << "input: \n";
     
@@ -185,7 +196,7 @@ int main()
         cin >> buildTime[i];
     }
 
-    string** rules = new string * [buildingRuleCount];
+    rules = new string * [buildingRuleCount];
     for(int i = 0; i < buildingRuleCount; i++){
         *(buildRule + i) = new int[2];
         cin >> buildRule[i][0] >> buildRule[i][1];
@@ -196,23 +207,22 @@ int main()
     
     cin >> targetBuiling;
 
-    Building* building = new Building[buildingCount];
-    multimap<string, TintCallback> callbackRequire;
+    building = new Building[buildingCount];
+    
     for(int i = 0; i < buildingCount; i++){
-        building[i].InitBuilding(i + 1, buildingCount, buildTime[i], rules);
+        building[i].InitBuilding(i + 1, buildingRuleCount, buildTime[i], rules);
         building[i].CallbackRegistration(&callbackRequire);
-        building[i].BuildStart();
     }
-    building[0].BuildComplete();
-    building[1].BuildComplete();
-    building[2].BuildComplete();
-    building[3].BuildComplete();
-    building[4].BuildComplete();
-    building[6].BuildStart();
-    building[5].BuildComplete();
-    building[6].BuildStart();
-    building[6].BuildComplete();
-    building[7].BuildComplete();
+
+    while(true){
+        cout << "건설 할 건물 번호를 입력하세요: ";
+        cin >> userInput;
+
+        if(userInput > 8 or userInput < 0){
+            break;
+        }
+        building[userInput - 1].BuildStart();
+    }
 
     /*callbackRequire.insert({ "12", [&](int){} });
     callbackRequire.insert({ "13", [&](int){} });*/

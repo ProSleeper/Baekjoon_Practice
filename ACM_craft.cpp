@@ -58,7 +58,7 @@
 //    answerCount = testCase;
 //    
 //    while (testCase > 0) {
-//        
+//		
 //        cin >> buildingCount >> buildingRuleCount;
 //        building = new Building[buildingCount];
 //        

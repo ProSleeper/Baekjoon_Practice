@@ -19,9 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
+    <ClCompile Include="ACM_craft.cpp" />
+    <ClCompile Include="CrainDollGame.cpp" />
+    <ClCompile Include="DLinkedList.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="War3BuildExampleFromCallback.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DLinkedList.h" />
+    <ClInclude Include="Graph.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

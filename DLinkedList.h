@@ -1,33 +1,35 @@
-//
-//  DLinkedList.h
-//  Baekjoon_Practice
-//
-//  Created by kyw on 05/03/2021.
-//  Copyright © 2021 kyw. All rights reserved.
-//
-
-#ifndef DLinkedList_h
-#define DLinkedList_h
+#ifndef __D_LINKED_LIST_H__
+#define __D_LINKED_LIST_H__
 
 typedef int LData;
 
-struct List {
-    
-};
+typedef struct _node
+{
+	LData data;
+	struct _node * next;
+} Node;
 
-void ListInit(List* pList);
-
-void LInsert(List* pList, LData data);
-
-int LFirst(List* pList, LData* pData);
-
-int LNext(List* pList, LData* pData);
-
-LData LRemove(List* pList);
-
-int LCount(List* pList);
-
-void SetSortRule(List* pList, int (*comp)(LData d1, LData d2));
+typedef struct _linkedList
+{
+	Node * head;
+	Node * cur;
+	Node * before;
+	int numOfData;
+	int (*comp)(LData d1, LData d2);
+} LinkedList;
 
 
-#endif /* DLinkedList_h */
+typedef LinkedList List;
+
+void ListInit(List * plist);
+void LInsert(List * plist, LData data);
+
+bool LFirst(List * plist, LData * pdata);
+bool LNext(List * plist, LData * pdata);
+
+LData LRemove(List * plist);
+int LCount(List * plist);
+
+void SetSortRule(List * plist, int (*comp)(LData d1, LData d2));
+
+#endif

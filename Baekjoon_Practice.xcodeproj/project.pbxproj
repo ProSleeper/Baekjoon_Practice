@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5141298225F8C0F50000D3F0 /* SugarDelivery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5141298125F8C0F50000D3F0 /* SugarDelivery.cpp */; };
 		5144BEC825F230B400D61E99 /* DLinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5144BEC725F230B400D61E99 /* DLinkedList.cpp */; };
 		515FB08525F225B400988DD4 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 515FB08425F225B400988DD4 /* Graph.cpp */; };
 		519C8D9125EE5BF00069A7AC /* War3BuildExampleFromCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 519C8D9025EE5BF00069A7AC /* War3BuildExampleFromCallback.cpp */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5141298125F8C0F50000D3F0 /* SugarDelivery.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SugarDelivery.cpp; sourceTree = "<group>"; };
 		5144BEC625F230B400D61E99 /* DLinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLinkedList.h; sourceTree = "<group>"; };
 		5144BEC725F230B400D61E99 /* DLinkedList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DLinkedList.cpp; sourceTree = "<group>"; };
 		515FB08425F225B400988DD4 /* Graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		51C0A83F25EE59A500669BE6 = {
 			isa = PBXGroup;
 			children = (
+				5141298125F8C0F50000D3F0 /* SugarDelivery.cpp */,
 				51EB25C625EF8C7500319C20 /* ACM_craft.cpp */,
 				515FB08425F225B400988DD4 /* Graph.cpp */,
 				5144BEC625F230B400D61E99 /* DLinkedList.h */,
@@ -132,6 +135,7 @@
 			files = (
 				519C8D9125EE5BF00069A7AC /* War3BuildExampleFromCallback.cpp in Sources */,
 				515FB08525F225B400988DD4 /* Graph.cpp in Sources */,
+				5141298225F8C0F50000D3F0 /* SugarDelivery.cpp in Sources */,
 				51EB25C725EF8C7500319C20 /* ACM_craft.cpp in Sources */,
 				5144BEC825F230B400D61E99 /* DLinkedList.cpp in Sources */,
 			);

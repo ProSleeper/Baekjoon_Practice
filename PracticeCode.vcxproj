@@ -23,6 +23,7 @@
     <ClCompile Include="CrainDollGame.cpp" />
     <ClCompile Include="DLinkedList.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Large.cpp" />
     <ClCompile Include="Number_Sum2.cpp" />
     <ClCompile Include="Partial_Sum.cpp" />
     <ClCompile Include="War3BuildExampleFromCallback.cpp" />

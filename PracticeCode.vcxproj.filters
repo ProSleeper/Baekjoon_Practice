@@ -36,6 +36,9 @@
     <ClCompile Include="Partial_Sum.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Large.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h">
